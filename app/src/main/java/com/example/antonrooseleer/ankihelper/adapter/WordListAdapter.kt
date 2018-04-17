@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.antonrooseleer.ankihelper.R
 import com.example.antonrooseleer.ankihelper.model.Model
+import com.example.antonrooseleer.ankihelper.util.AnkiDroidUtil
 import kotlinx.android.synthetic.main.word_option_view.view.*
 
 class WordListAdapter(val wordList: ArrayList<Model.Word>) : RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
@@ -31,7 +32,7 @@ class WordListAdapter(val wordList: ArrayList<Model.Word>) : RecyclerView.Adapte
             itemView.jp_word.text = list.get(0)
             itemView.en_def.text = stringifyEnReading(word.senses)
             itemView.setOnClickListener {
-
+                AnkiDroidUtil.addWord(itemView.context, word)
             }
         }
 
