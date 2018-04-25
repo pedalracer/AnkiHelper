@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.example.antonrooseleer.ankihelper.R
 import com.example.antonrooseleer.ankihelper.model.Model
 import com.example.antonrooseleer.ankihelper.util.AnkiDroidUtil
+import com.example.antonrooseleer.ankihelper.util.StringUtils
 import kotlinx.android.synthetic.main.word_option_view.view.*
 
 class WordListAdapter(val wordList: ArrayList<Model.Word>) : RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
@@ -27,52 +28,13 @@ class WordListAdapter(val wordList: ArrayList<Model.Word>) : RecyclerView.Adapte
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(word: Model.Word) {
-            val list = stringifyJpReading(word.japanese)
+            val list = StringUtils.stringifyJpReading(word.japanese)
             itemView.jp_reading.text = list.get(1)
             itemView.jp_word.text = list.get(0)
-            itemView.en_def.text = stringifyEnReading(word.senses)
+            itemView.en_def.text = StringUtils.stringifyEnReading(word.senses)
             itemView.setOnClickListener {
-                AnkiDroidUtil.addWord(itemView.context, word)
+                AnkiDroidUtil.addWord(itemView.context, itemView.jp_word.text.toString(), itemView.jp_reading.text.toString(),itemView.en_def.text.toString())
             }
-        }
-
-        private fun stringifyJpReading(japaneseWords: List<Model.Japanese>): List<String> {
-            var readings = ""
-            var words = ""
-            if (japaneseWords.isEmpty()) {
-                return listOf("", "")
-            }
-            for (jpword in japaneseWords) {
-                if (jpword.reading != null) {
-                    if (readings.equals("")) {
-                        readings += jpword.reading
-                    } else if (!jpword.reading.isEmpty()) {
-                        readings += String.format(", %s", jpword.reading)
-                    }
-                }
-                if (jpword.word != null) {
-                    if (words.equals("")) {
-                        words += jpword.word
-                    } else if (!jpword.word.isEmpty()) {
-                        words += String.format(", %s", jpword.word)
-                    }
-                }
-            }
-            return listOf<String>(words, readings)
-        }
-
-        private fun stringifyEnReading(englishWord: List<Model.Senses>): String {
-
-            var result = "";
-            for (translation in englishWord) {
-                if (result.equals("")) {
-                    result += translation.english_definitions
-                } else {
-                    result += String.format(", %s", translation.english_definitions)
-                }
-            }
-            return result
         }
     }
-
 }

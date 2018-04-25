@@ -2,20 +2,12 @@ package com.example.antonrooseleer.ankihelper.util
 
 import android.app.Activity
 import android.content.Context
-import com.example.antonrooseleer.ankihelper.model.Model
 import android.support.v4.app.ShareCompat
 import com.ichi2.anki.api.AddContentApi
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
 import com.ichi2.anki.api.AddContentApi.READ_WRITE_PERMISSION
-
-
-
-
-
-
-
 
 class AnkiDroidUtil {
 
@@ -24,19 +16,20 @@ class AnkiDroidUtil {
         private val MODEL_REF_DB = "com.ichi2.anki.api.models"
         val modelName = "com.example.antonrooseleer.ankihelper"
 
-        fun addWord(context : Context, word : Model.Word){
+        fun addWord(context : Context, word :String, reading : String, translation : String){
             if (AddContentApi.getAnkiDroidPackageName(context) != null) {
                 // API available: Add deck and model if required, then add your note
                 val api = AddContentApi(context)
-                val deckId = if(getDeckId(api, deckName) == -1L)  api.addNewDeck("My app name") else getDeckId(api, deckName)
+                val deckId = if(getDeckId(api, deckName) == -1L)  api.addNewDeck(deckName) else getDeckId(api, deckName)
                 val modelId = if(findModel(api, modelName) != -1L) findModel(api, modelName) else api.addNewBasicModel(modelName)
-                api.addNote(modelId, deckId, arrayOf(word.japanese[0].word, word.senses[0].english_definitions.toString()), null)
+                api.addNote(modelId, deckId, arrayOf(word, StringUtils.generateBackOfCard(reading,translation)), null)
             } else {
+                println("Anton alt")
                 // Fallback on ACTION_SEND Share Intent if the API is unavailable
                 val shareIntent = ShareCompat.IntentBuilder.from(context as Activity)
                         .setType("text/plain")
-                        .setSubject(word.japanese[0].word)
-                        .setText(word.senses[0].english_definitions.toString())
+                        .setSubject(word)
+                        .setText(StringUtils.generateBackOfCard(reading,translation))
                         .intent
                 if (shareIntent.resolveActivity(context.packageManager) != null) {
                     context.startActivity(shareIntent)
