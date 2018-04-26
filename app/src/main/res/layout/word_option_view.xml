@@ -14,6 +14,7 @@
             android:id="@+id/txtJpWord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/purple"
             android:text="@string/word"
             android:textStyle="bold" />
 
@@ -22,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/txtJpWord"
+            android:textColor="@color/white"
             android:layout_below="@id/txtJpWord"
             android:layout_marginTop="5dp" />
 
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_toEndOf="@id/txtJpWord"
+            android:textColor="@color/light_green"
             android:gravity="end"
             android:text="@string/reading"
             android:textStyle="bold" />
@@ -40,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtReading"
+            android:textColor="@color/white"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@id/jp_word"
@@ -52,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/jpContainer"
+        android:textColor="@color/light_blue"
         android:layout_marginTop="10dp"
         android:text="@string/translation"
         android:textStyle="bold" />
@@ -62,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/txtEnDef"
         android:layout_below="@id/txtEnDef"
+        android:textColor="@color/white"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:maxLines="3" />

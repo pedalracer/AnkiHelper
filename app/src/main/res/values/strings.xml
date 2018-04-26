@@ -4,4 +4,5 @@
     <string name="reading">Reading</string>
     <string name="translation">Translation</string>
     <string name="select_translation">Select desired flashcard</string>
+    <string name="select_defintion">Select desired word to save</string>
 </resources>

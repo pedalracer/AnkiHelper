@@ -24,7 +24,6 @@ class AnkiDroidUtil {
                 val modelId = if(findModel(api, modelName) != -1L) findModel(api, modelName) else api.addNewBasicModel(modelName)
                 api.addNote(modelId, deckId, arrayOf(word, StringUtils.generateBackOfCard(reading,translation)), null)
             } else {
-                println("Anton alt")
                 // Fallback on ACTION_SEND Share Intent if the API is unavailable
                 val shareIntent = ShareCompat.IntentBuilder.from(context as Activity)
                         .setType("text/plain")
@@ -35,6 +34,7 @@ class AnkiDroidUtil {
                     context.startActivity(shareIntent)
                 }
             }
+            (context as Activity).finish()
         }
 
         fun findModel(api: AddContentApi, modelName: String) : Long{
