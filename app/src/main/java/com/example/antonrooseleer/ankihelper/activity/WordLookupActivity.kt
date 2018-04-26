@@ -19,6 +19,7 @@ class WordLookupActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.word_lookup_activity)
+        icClose.setOnClickListener { finish() }
         loading.visibility = View.VISIBLE
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.addItemDecoration(SimpleDividerItemDecorator(this))
@@ -30,8 +31,16 @@ class WordLookupActivity : Activity() {
     }
 
     private fun showResults(wordList : ArrayList<Model.Word>){
+        var wordAdapter : WordListAdapter
         loading.visibility = View.INVISIBLE
-        recycler.adapter = WordListAdapter(wordList)
+        selectionTitle.visibility = View.VISIBLE
+        var subList = wordList.subList(0,3)
+        wordAdapter = WordListAdapter(subList)
+        recycler.adapter = wordAdapter
+        icMore.visibility = View.VISIBLE
+        icMore.setOnClickListener {
+            wordAdapter.setWordList(wordList)
+        }
     }
     override fun onStart() {
         super.onStart()

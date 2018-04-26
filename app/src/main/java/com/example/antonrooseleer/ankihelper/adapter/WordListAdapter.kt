@@ -10,7 +10,7 @@ import com.example.antonrooseleer.ankihelper.util.AnkiDroidUtil
 import com.example.antonrooseleer.ankihelper.util.StringUtils
 import kotlinx.android.synthetic.main.word_option_view.view.*
 
-class WordListAdapter(val wordList: ArrayList<Model.Word>) : RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
+class WordListAdapter(var wordList: MutableList<Model.Word>) : RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.word_option_view, parent, false)
@@ -23,6 +23,11 @@ class WordListAdapter(val wordList: ArrayList<Model.Word>) : RecyclerView.Adapte
 
     override fun getItemCount(): Int {
         return wordList.size
+    }
+
+    fun setWordList(wordList: ArrayList<Model.Word>){
+        this.wordList = wordList.toMutableList()
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

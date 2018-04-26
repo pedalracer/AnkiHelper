@@ -35,7 +35,7 @@
 
         <activity
             android:name=".activity.WordLookupActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
     </application>
 

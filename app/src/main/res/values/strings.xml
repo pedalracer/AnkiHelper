@@ -3,7 +3,8 @@
     <string name="word">Word</string>
     <string name="reading">Reading</string>
     <string name="translation">Translation</string>
-    <string name="select_translation">Select desired flashcard</string>
+    <string name="select_translation">Select desired flashcard</string>               
     <string name="helper_running">AnkiHelper is now running!</string>
     <string name="how_it_works">How it works</string>
+    <string name="select_defintion">Select desired word to save</string>
 </resources>

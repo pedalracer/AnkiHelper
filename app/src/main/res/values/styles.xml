@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textAppearance">@style/customText</item>
     </style>
 
     <style name="Theme.Transparent" parent="android:Theme">
@@ -24,5 +25,9 @@
 
     <style name="subText">
         <item name="android:textSize">@dimen/medium_text</item>
+    </style>
+  
+    <style name="customText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>
