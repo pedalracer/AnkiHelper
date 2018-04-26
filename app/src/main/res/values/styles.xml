@@ -17,4 +17,12 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="headerText">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="subText">
+        <item name="android:textSize">@dimen/medium_text</item>
+    </style>
 </resources>
