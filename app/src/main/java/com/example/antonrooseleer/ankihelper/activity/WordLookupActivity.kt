@@ -27,7 +27,7 @@ class WordLookupActivity : Activity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onWordResult(result: SearchResultEvent) {
-        showResults(result.data.data)
+        //showResults(result.data.data)
     }
 
     private fun showResults(wordList: ArrayList<Model.Word>) {

@@ -12,10 +12,20 @@
         style="@style/headerText"
         android:text="@string/how_it_works"/>
 
-    <VideoView
-        android:id="@+id/onboardingVideo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/onboardingDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/onboardingHeader"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:text="placeholder" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/onboardingTutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/onboardingDescription" />
+
+
 </RelativeLayout>
