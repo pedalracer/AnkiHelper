@@ -26,22 +26,27 @@ class WordLookupActivity : Activity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onWordResult(result : SearchResultEvent){
+    fun onWordResult(result: SearchResultEvent) {
         showResults(result.data.data)
     }
 
-    private fun showResults(wordList : ArrayList<Model.Word>){
-        var wordAdapter : WordListAdapter
+    private fun showResults(wordList: ArrayList<Model.Word>) {
+        var wordAdapter: WordListAdapter
         loading.visibility = View.INVISIBLE
         selectionTitle.visibility = View.VISIBLE
-        var subList = wordList.subList(0,3)
-        wordAdapter = WordListAdapter(subList)
-        recycler.adapter = wordAdapter
-        icMore.visibility = View.VISIBLE
-        icMore.setOnClickListener {
-            wordAdapter.setWordList(wordList)
+        if (wordList.size <= 3) {
+            wordAdapter = WordListAdapter(wordList)
+        } else {
+            var subList = wordList.subList(0, 3)
+            wordAdapter = WordListAdapter(subList)
+            icMore.visibility = View.VISIBLE
+            icMore.setOnClickListener {
+                wordAdapter.setWordList(wordList)
+            }
         }
+        recycler.adapter = wordAdapter
     }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)

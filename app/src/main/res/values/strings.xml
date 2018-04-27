@@ -6,5 +6,8 @@
     <string name="select_translation">Select desired flashcard</string>               
     <string name="helper_running">AnkiHelper is now running!</string>
     <string name="how_it_works">How it works</string>
-    <string name="select_defintion">Select desired word to save</string>
+    <string name="select_defintion">Select word to save</string>
+    <string name="successful_creation">Flashcard created!</string>
+    <string name="failed_creation">Failed Flashcard creation!</string>
+    <string name="attempt_creation">Attempting Flashcard creation!</string>
 </resources>

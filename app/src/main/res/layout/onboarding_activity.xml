@@ -12,11 +12,10 @@
         style="@style/headerText"
         android:text="@string/how_it_works"/>
 
-    <android.support.v4.view.ViewPager
-        android:layout_below="@id/onboardingHeader"
-        android:layout_marginTop="25dp"
+    <VideoView
+        android:id="@+id/onboardingVideo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
-
+        android:layout_height="match_parent"
+        android:layout_below="@id/onboardingHeader"
+        />
 </RelativeLayout>
