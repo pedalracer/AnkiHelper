@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.antonrooseleer.ankihelper"
         minSdkVersion 23
@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.evernote:android-job:1.2.5'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.ichi2.anki:api:1.1.0alpha5'
+    implementation 'com.rmtheis:tess-two:6.0.4'
 }
