@@ -18,10 +18,10 @@ class OnboardingPager(fragmentManager: FragmentManager) : FragmentPagerAdapter(f
 
     override fun getItem(position: Int): Fragment? {
         when (position) {
-            0 // Fragment # 0 - This will show FirstFragment
-            -> return OnboardingFragment.newInstance(0, "How it works")
-            1 // Fragment # 0 - This will show FirstFragment different title
-            -> return OcrFragment.newInstance(1, "OCR")
+//            0 // Fragment # 0 - This will show FirstFragment
+//            -> return OnboardingFragment.newInstance()
+//            1 // Fragment # 0 - This will show FirstFragment different title
+//            -> return OcrFragment.newInstance()
             else -> return null
         }
     }

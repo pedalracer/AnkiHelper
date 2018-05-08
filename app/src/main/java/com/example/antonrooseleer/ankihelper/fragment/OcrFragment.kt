@@ -1,5 +1,6 @@
 package com.example.antonrooseleer.ankihelper.fragment
 
+import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,16 +9,13 @@ import android.view.ViewGroup
 import com.example.antonrooseleer.ankihelper.R
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.graphics.ColorFilter
-import android.graphics.PorterDuff
 import android.hardware.Camera
-import android.widget.Toast
 import com.example.antonrooseleer.ankihelper.model.CameraPreview
 import kotlinx.android.synthetic.main.ocr_fragment.*
 import android.hardware.Camera.PictureCallback
-import android.support.v4.app.Fragment
 import com.example.antonrooseleer.ankihelper.event.OcrTextResult
 import com.example.antonrooseleer.ankihelper.util.CloudVision
+import com.example.antonrooseleer.ankihelper.util.PermissionUtil
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -25,17 +23,18 @@ import org.greenrobot.eventbus.ThreadMode
 /**
  * Created by a_176 on 28/04/2018.
  */
-class OcrFragment : Fragment(){
+class OcrFragment : Fragment() {
+
+    var isLoading = false
+    val REQUEST_CODE = 200
+
 
     companion object {
-        fun newInstance ( page : Int,  title : String ) : Fragment? {
+        val TAG = "OcrFragment"
+        fun newInstance(): Fragment {
             return OcrFragment()
         }
     }
-
-    var mCamera : Camera? = getCameraInstance()
-    var isLoading = false
-    val TAG = "OcrFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.ocr_fragment, container, false)
@@ -43,14 +42,34 @@ class OcrFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Create an instance of Camera
-        if(checkCameraHardware(context)){
-            //show camera preview
-            Toast.makeText(context,"Found camera hardware",Toast.LENGTH_SHORT).show()
 
-        } else {
-            Toast.makeText(context,"Could not find camera hardware",Toast.LENGTH_SHORT).show()
+        val mContext = context
+        if (mContext != null) {
+            if (PermissionUtil.checkOcrPermissions(mContext, this)) {
+                setupCameraPreview()
+
+            }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        var i = 0;
+        for (permission in permissions) {
+            when (permission) {
+                "android.permission.CAMERA" -> {
+                    if(grantResults[i] !=  -1) {
+                        setupCameraPreview()
+                    }
+                }
+            }
+            i++
+        }
+    }
+
+    private fun setupCameraPreview() {
+
+        val mCamera = getCameraInstance()
         mCamera?.setDisplayOrientation(90)
         var params = mCamera?.getParameters()
         params?.jpegQuality = 100
@@ -62,19 +81,18 @@ class OcrFragment : Fragment(){
         camera_preview.addView(mPreview)
 
         camera_preview.setOnClickListener {
-            if(!isLoading){
+            if (!isLoading) {
                 isLoading = true
                 loading_progress.visibility = View.VISIBLE
-                mCamera?.takePicture(null,null,mPicture)
+                mCamera?.takePicture(null, null, mPicture)
             }
         }
     }
 
-
     /** Check if this device has a camera  */
     private fun checkCameraHardware(context: Context?): Boolean {
-        if(context?.packageManager != null){
-         return   context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
+        if (context?.packageManager != null) {
+            return context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
         }
         return false
     }
@@ -84,7 +102,7 @@ class OcrFragment : Fragment(){
 
         var c: Camera? = null
         try {
-            c = Camera.open() // attempt to get a Camera instance
+            c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK) // attempt to get a Camera instance
         } catch (e: Exception) {
             e.printStackTrace()
             // Camera is not available (in use or does not exist)
@@ -94,14 +112,14 @@ class OcrFragment : Fragment(){
     }
 
     private val mPicture = PictureCallback { data, camera ->
-       //val bitmap = BitmapUtil.toBitmap(data);
-        val bitmap = BitmapFactory.decodeByteArray(data,0,data.size)
+        //val bitmap = BitmapUtil.toBitmap(data);
+        val bitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
         val vision = CloudVision(context)
         vision.uploadImage(bitmap)
-       // mCamera?.startPreview()
+        // mCamera?.startPreview()
     }
 
-    fun setPreviewText (text : String) {
+    fun setPreviewText(text: String) {
         ocrPreview.text = text
     }
 

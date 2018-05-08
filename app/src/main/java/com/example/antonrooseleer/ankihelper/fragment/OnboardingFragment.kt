@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.onboarding_fragment.*
 class OnboardingFragment : Fragment() {
 
     companion object {
-        fun newInstance ( page : Int,  title : String ) : Fragment? {
+        fun newInstance () : Fragment? {
             return OnboardingFragment()
         }
     }

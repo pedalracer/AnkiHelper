@@ -41,7 +41,7 @@ import static android.content.ContentValues.TAG;
 public class CloudVision {
 
     private Context context;
-    private String CLOUD_VISION_API_KEY = "";
+    private String CLOUD_VISION_API_KEY = "AIzaSyB5sD2boY6HlL6TTD0TtCCxY17Of_3gSV8";
     private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
     private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
     private static final int MAX_LABEL_RESULTS = 10;
