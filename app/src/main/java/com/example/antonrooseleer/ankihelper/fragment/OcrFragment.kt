@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.example.antonrooseleer.ankihelper.R
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.hardware.Camera
 import com.example.antonrooseleer.ankihelper.model.CameraPreview
 import kotlinx.android.synthetic.main.ocr_fragment.*
@@ -50,6 +52,7 @@ class OcrFragment : Fragment() {
 
             }
         }
+        loading_progress.indeterminateDrawable.setColorFilter(context.getColor(R.color.white), PorterDuff.Mode.MULTIPLY)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -82,9 +85,16 @@ class OcrFragment : Fragment() {
 
         camera_preview.setOnClickListener {
             if (!isLoading) {
+                ocrPreview.text = ""
                 isLoading = true
                 loading_progress.visibility = View.VISIBLE
                 mCamera?.takePicture(null, null, mPicture)
+            }
+        }
+
+        retry.setOnClickListener {
+            if(!isLoading){
+                mCamera?.startPreview()
             }
         }
     }

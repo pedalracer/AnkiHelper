@@ -30,21 +30,47 @@
             android:id="@+id/loading_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:background="@drawable/bg_progress_bar"
+            android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/top_content_margin"
-            android:layout_centerInParent="true"/>
+            android:visibility="invisible" />
+
+        <RelativeLayout
+            android:id="@+id/ocr_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_black"
+            android:padding="@dimen/header_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/ocr_text"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+
+            <ImageView
+                android:id="@+id/retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/baseline_replay_white_24" />
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/ocrPreview"
             style="@style/customText"
-            android:textColor="@color/white"
-            android:textIsSelectable="true"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/top_content_margin"
+            android:layout_below="@id/ocr_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/content_margin"
+            android:text="@string/ocr_content"
+            android:textColor="@color/white"
+            android:textIsSelectable="true" />
+
     </RelativeLayout>
 
 </LinearLayout>
