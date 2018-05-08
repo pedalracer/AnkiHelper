@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiService {
 
-    public val jishoService by lazy {
+     val jishoService by lazy {
         ApiService.createJishoService()
     }
 

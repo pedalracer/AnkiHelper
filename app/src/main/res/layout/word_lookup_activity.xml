@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="10dp"
-    android:background="@drawable/black_rounded_bg"
-    android:padding="5dp">
+    android:background="@drawable/black_rounded_bg">
 
     <ImageView
         android:id="@+id/icClose"

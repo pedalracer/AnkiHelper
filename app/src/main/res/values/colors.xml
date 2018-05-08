@@ -7,5 +7,7 @@
     <color name="white">#FFFF</color>
     <color name="light_green">#8BC34A</color>
     <color name="light_blue">#03A9F4</color>
+    <color name="light_grey">#BDBDBD</color>
+    <color name="light_black">#424242</color>
     <color name="purple">#e67e22 </color>
 </resources>
