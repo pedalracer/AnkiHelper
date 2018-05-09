@@ -11,8 +11,7 @@ import com.example.antonrooseleer.ankihelper.activity.OnboardingActivity
 import com.example.antonrooseleer.ankihelper.event.OcrTextResult
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.googleapis.json.GoogleJsonResponseException
-import com.google.api.client.http.HttpTransport
-import com.google.api.client.json.JsonFactory
+
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.vision.v1.Vision
 import com.google.api.services.vision.v1.VisionRequest
@@ -29,16 +28,16 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.lang.ref.WeakReference
 import java.util.ArrayList
-import java.util.Locale
 
 import android.content.ContentValues.TAG
+import com.example.antonrooseleer.ankihelper.BuildConfig
 
 /**
  * Created by a_176 on 6/05/2018.
  */
 
 class CloudVision(private val context: Context) {
-    private val CLOUD_VISION_API_KEY = "AIzaSyB5sD2boY6HlL6TTD0TtCCxY17Of_3gSV8"
+    private val CLOUD_VISION_API_KEY = BuildConfig.ApiKey
     private var processedBitmap: Bitmap? = null
 
     fun uploadImage(bitmap: Bitmap) {
