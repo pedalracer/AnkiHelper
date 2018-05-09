@@ -39,5 +39,12 @@ class StringUtils {
         fun generateBackOfCard(reading: String,  translation : String) : String {
             return String.format("%s<br />%s",reading,translation)
         }
+
+        fun generateFrontOfCard (word : String, reading : String) : String {
+            when (word) {
+                "" -> return reading
+                else -> return word
+            }
+        }
     }
 }

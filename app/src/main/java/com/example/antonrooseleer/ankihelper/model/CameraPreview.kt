@@ -15,11 +15,10 @@ import java.io.IOException
 import android.content.ContentValues.TAG
 
 /** A basic Camera preview class  */
-class CameraPreview(context: Context, private val mCamera: Camera) : SurfaceView(context), SurfaceHolder.Callback {
+class CameraPreview(context: Context, private val mCamera: Camera?) : SurfaceView(context), SurfaceHolder.Callback {
     private val mHolder = holder
 
     init {
-
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder.addCallback(this)
@@ -30,8 +29,8 @@ class CameraPreview(context: Context, private val mCamera: Camera) : SurfaceView
     override fun surfaceCreated(holder: SurfaceHolder) {
         // The Surface has been created, now tell the camera where to draw the preview.
         try {
-            mCamera.setPreviewDisplay(holder)
-            mCamera.startPreview()
+            mCamera?.setPreviewDisplay(holder)
+            mCamera?.startPreview()
         } catch (e: IOException) {
             Log.d(TAG, "Error setting camera preview: " + e.message)
         }
@@ -53,7 +52,7 @@ class CameraPreview(context: Context, private val mCamera: Camera) : SurfaceView
 
         // stop preview before making changes
         try {
-            mCamera.stopPreview()
+            mCamera?.stopPreview()
         } catch (e: Exception) {
             // ignore: tried to stop a non-existent preview
         }
@@ -63,8 +62,8 @@ class CameraPreview(context: Context, private val mCamera: Camera) : SurfaceView
 
         // start preview with new settings
         try {
-            mCamera.setPreviewDisplay(mHolder)
-            mCamera.startPreview()
+            mCamera?.setPreviewDisplay(mHolder)
+            mCamera?.startPreview()
 
         } catch (e: Exception) {
             Log.d(TAG, "Error starting camera preview: " + e.message)

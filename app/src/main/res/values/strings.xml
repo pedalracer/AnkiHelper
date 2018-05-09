@@ -12,5 +12,5 @@
     <string name="attempt_creation">Attempting Flashcard creation!</string>
     <string name="no_results">Sorry! No text was found.</string>
     <string name="ocr_text">Extracted text</string>
-    <string name="ocr_content">Once you\'ve taken a picture the extracted text will show up here.</string>
+    <string name="ocr_content">Once you\'ve taken a picture the extracted text will show up here!</string>
 </resources>
