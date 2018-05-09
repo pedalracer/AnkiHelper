@@ -13,4 +13,7 @@
     <string name="no_results">Sorry! No text was found.</string>
     <string name="ocr_text">Extracted text</string>
     <string name="ocr_content">Once you\'ve taken a picture the extracted text will show up here!</string>
+    <string name="home">Home</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="settings">Settings</string>
 </resources>
