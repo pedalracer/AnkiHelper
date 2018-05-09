@@ -3,9 +3,6 @@ package com.example.antonrooseleer.ankihelper.fragment
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.antonrooseleer.ankihelper.R
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -15,12 +12,18 @@ import android.hardware.Camera
 import com.example.antonrooseleer.ankihelper.model.CameraPreview
 import kotlinx.android.synthetic.main.ocr_fragment.*
 import android.hardware.Camera.PictureCallback
+import android.view.*
 import com.example.antonrooseleer.ankihelper.event.OcrTextResult
 import com.example.antonrooseleer.ankihelper.util.CloudVision
 import com.example.antonrooseleer.ankihelper.util.PermissionUtil
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import android.view.ContextMenu.ContextMenuInfo
+import android.widget.AdapterView
+
+
+
 
 /**
  * Created by a_176 on 28/04/2018.
@@ -53,6 +56,7 @@ class OcrFragment : Fragment() {
             }
         }
         loading_progress.indeterminateDrawable.setColorFilter(context.getColor(R.color.white), PorterDuff.Mode.MULTIPLY)
+        registerForContextMenu(ocrPreview)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -70,6 +74,21 @@ class OcrFragment : Fragment() {
         }
     }
 
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
+
+        menu.setHeaderTitle("Context Menu")
+        menu.add(0, v.id, 0, "Action 1")
+        super.onCreateContextMenu(menu, v, menuInfo)
+        // Create your context menu here
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        // Call your function to preform for buttons pressed in a context menu
+        // can use item.getTitle() or similar to find out button pressed
+        // item.getItemID() will return the v.getID() that we passed before
+        return true
+
+    }
     private fun setupCameraPreview() {
 
         val mCamera = getCameraInstance()

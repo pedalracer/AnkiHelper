@@ -28,12 +28,8 @@ class OnboardingActivity : AppCompatActivity() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            // set item as selected to persist highlight
             menuItem.isChecked = true
-            // close drawer when item is tapped
             mDrawerLayout.closeDrawers()
-            // Add code here to update the UI based on the item selected
-            // For example, swap UI fragments here
             true
         }
     }
