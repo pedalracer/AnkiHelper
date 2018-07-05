@@ -27,3 +27,4 @@ class ProcessTextActivity : Activity() {
         WordLookUpJob().lookup(selectedText)
     }
 }
+    
